@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet"href="关于.css">
+    <title>关于</title>
+</head>
+<body>
+    <div class="phone">
+        <div class="card">
+          <div class="card__contents">
+            <div class="card__title">胡天意（组长）</div>
+            <div class="card__body">
+              <p>绘画</p>
+              <p>主页</p>
+              <p>各部分修饰</p>
+            </div>
+            <div class="card__next">next →</div>
+          </div>
+          <div class="card__shadow">
+            <div class="card__shadow-inner"></div>
+          </div>
+          <div class="card__index">1</div>
+        </div>
+        <div class="card">
+          <div class="card__contents">
+            <div class="card__title">王梅羽</div>
+            <div class="card__body">
+              <p>动漫</p>
+              <input class="card__input" type="email">
+            </div>
+            <div class="card__next">next →</div>
+          </div>
+          <div class="card__shadow">
+            <div class="card__shadow-inner"></div>
+          </div>
+          <div class="card__index">2</div>
+        </div>
+        <div class="card">
+          <div class="card__contents">
+            <div class="card__title">梁凯曦</div>
+            <div class="card__body">
+              <p>摄影</p>
+              <input class="card__input" type="text">
+            </div>
+            <div class="card__next">next →</div>
+          </div>
+          <div class="card__shadow">
+            <div class="card__shadow-inner"></div>
+          </div>
+          <div class="card__index">3</div>
+        </div>
+        <div class="card">
+          <div class="card__contents">
+            <div class="card__title">刘佳鑫</div>
+            <div class="card__body">
+              <p>电影</p>
+              <input class="card__input" type="text">
+            </div>
+            <!-- <div class="card__next">next →</div> -->
+          </div>
+          <div class="card__shadow">
+            <div class="card__shadow-inner"></div>
+          </div>
+          <div class="card__index">4</div>
+        </div>
+      </div>
+</body>
+<script>
+    const cards = document.querySelectorAll('.card'),
+      nexts = document.querySelectorAll('.card__next'),
+      ixs = document.querySelectorAll('.card__index');
+nexts.forEach((next, i) => {
+  next.addEventListener('click', function() {
+    cards[i + 1].style.transform = 'none';
+  });
+});
+ixs.forEach((index, i) => {
+  index.addEventListener('click', () => {
+    for (let j = ixs.length - 1; j > i; j--) {
+      cards[j].style.transform = 'translateX(100%)';
+    }
+    console.log(i);
+  })
+});
+</script>
+</html>

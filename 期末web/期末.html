@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>视觉艺术</title>
+    <link rel="stylesheet"href="期末.css">
+</head>
+<body>
+    <div class="a">
+        <span style="--i:1">视</span>
+        <span style="--i:2">觉</span>
+        <span style="--i:3">艺</span>
+        <span style="--i:4">术</span>
+    </div>
+<ul >
+    <li><a href="C:\Users\21488\Desktop\期末web\绘画\绘画.html">绘画</a></li>
+    <li><a href="#home">摄影</a></li>
+    <li><a href="C:\Users\21488\Desktop\期末web\动漫\index.html">动漫</a></li>
+    <li><a href="C:\Users\21488\Desktop\期末web\movies\movie.html">电影</a></li>
+    <li><a href="关于.html">关于</a></li>
+    </ul>
+    <div class="carousel">
+        <div class="container">
+            <a href=C:\Users\21488\Desktop\期末web\绘画\梵高.html target="_blank"
+                ><img src="C:\Users\21488\Desktop\期末web\绘画\梵高\thumb_w260 (9).jfif"
+            /></a>
+            <a href="C:\Users\21488\Desktop\期末web\摄影\著名作品.html" target="_blank"
+                ><img src="C:\Users\21488\Desktop\期末web\摄影\自然类\n10.jpg"
+            /></a>
+            <a href="C:\Users\21488\Desktop\期末web\动漫\yourname.html" target="_blank"
+                ><img src="C:\Users\21488\Desktop\期末web\动漫\images\2.1(1).jpg"
+            /></a>
+            <a href="C:\Users\21488\Desktop\期末web\movies\Avatar The Way of Water.html" target="_blank"
+                ><img src="C:\Users\21488\Desktop\期末web\movies\img\Avatar\Avatar_033.jpg"
+            /></a>
+        </div>
+        <div class="shift">
+            <div class="btn left" onclick="leftShift()">&lt;</div>
+            <div class="btn right" onclick="rightShift()">&gt;</div>
+        </div>
+        <div class="bottom"></div>
+    </div>
+    </body>
+    <script>
+        // 显示的图片下标
+        let index = 0
+    
+        // 图片的数量
+        let imageCount = document.querySelectorAll(
+            ".carousel .container img"
+        ).length
+    
+        const bottom = document.querySelector(".carousel .bottom")
+        for (let i = 0; i < imageCount; i++) {
+            // DOM 操作
+            // 知识点：https://3yya.com/courseware/chapter/162
+    
+            // 创建底部按钮
+            const indicator = document.createElement("div")
+            indicator.classList.add("indicator")
+            indicator.onclick = () => setIndex(i)
+    
+            bottom.append(indicator)
+        }
+    
+        function createAuto() {
+            return setInterval(() => {
+                index++
+                refresh()
+            }, 3000)
+        }
+    
+        // 自动滚动
+        let autoTimer = createAuto()
+    
+        function refresh() {
+            if (index < 0) {
+                // 下标小于 0 时
+                // 设置最右的图片
+                index = imageCount - 1
+            } else if (index >= imageCount) {
+                // 下标超过上限时
+                // 设置最左的图片
+                index = 0
+            }
+    
+            // 获取轮播框元素
+            let carousel = document.querySelector(".carousel")
+    
+            //获取轮播框的宽度
+            let width = getComputedStyle(carousel).width
+            width = Number(width.slice(0, -2))
+    
+            carousel.querySelector(".container").style.left =
+                index * width * -1 + "px"
+        }
+    
+        let refreshWrapper = (func) => {
+            // refresh 装饰器
+            return function (...args) {
+                let result = func(...args)
+                refresh()
+    
+                // 重置自动滚动
+                clearInterval(autoTimer)
+                autoTimer = createAuto()
+                return result
+            }
+        }
+    
+        let leftShift = refreshWrapper(() => {
+            index--
+        })
+        let rightShift = refreshWrapper(() => {
+            index++
+        })
+    
+        let setIndex = refreshWrapper((idx) => {
+            index = idx
+        })
+    
+        refresh()
+    </script>
+    </html>
