@@ -1,0 +1,113 @@
+* {
+    box-sizing: border-box;
+}
+/*导航栏*/
+.nav{
+    height:60px;
+    background-image: linear-gradient(to right, #434876,#666b91);
+    z-index: 1;/*z-index 属性指定一个元素的堆叠顺序。拥有更高堆叠顺序的元素总是会处于堆叠顺序较低的元素的前面。*/
+    position: relative;
+}
+*{
+    margin:0;
+    padding:0;
+    text-decoration: none;/*属性规定添加到文本的修饰，下划线、上划线、删除线等。*/
+    list-style:none;
+}
+.ullist{
+    position:absolute;
+    left: 500px;
+    top:10px;
+}
+.libt{
+    float:left;/*	元素向左浮动。*/
+    width:100px;
+    height:40px;
+    text-align: center;
+    line-height: 40px;
+    font-size: 15px;
+}
+.libt a{
+    color:rgb(255, 255, 255);
+    display: block;/*属性规定元素应该生成的框的类型。*/
+}
+.libt a:hover{
+  background-color:  #A3C7D6;
+}
+/*一级下拉*/
+.droplist{
+  background-image: linear-gradient(to bottom, #404258,#282A3A);
+    box-shadow: 0px 1px 2px #49543c;
+    display: none;
+}
+.libt:hover .droplist{
+    display: block;
+}
+.droplist li{
+    border-top: 1px solid #ccc;
+    height: 40px;
+}
+/*显示二级下拉*/
+.droplist li:hover .droplist2{
+    display: block;
+}
+.droplist2{
+    position:relative;
+    left:100px;
+    top:-41px;
+    background-image: linear-gradient(to right, #404258,#282A3A);
+    box-shadow: 0px 1px 2px #b699d1;
+    display: none;
+}
+/*图像*/
+body {
+  margin: 0;
+  padding: 0;
+  background: radial-gradient(circle at top center,#d8e8f8,#909caa);
+}
+
+.container {
+  width: 1200px;
+  margin: 20px auto;
+  padding: 0 10px;
+  column-count: 5;
+  -moz-column-gap:40px; /* Firefox */
+  -webkit-column-gap:40px; /* Safari and Chrome */
+  column-gap:40px;
+}
+.container .item {
+  width: 100%;
+  margin: 0 0 20px;
+  padding: 10px;
+  overflow: hidden;
+  background-image: linear-gradient(to bottom, #99a8f5, #d0d4e7);
+  break-inside: avoid;
+}
+.item img {
+  width: 100%;
+}
+.item h2 {
+  margin: 10px 0 0;
+  padding: 0;
+}
+.item {
+  padding: 0 0 10px;
+}
+@media screen and (max-width: 1200px) {
+  .container {
+    column-count: 3;
+    width: calc(100% - 40px);
+    box-sizing: border-box;
+    padding: 20px 20px 20px 0;
+  }
+}
+@media screen and (max-width: 768px) {
+  .container {
+    column-count: 2;
+  }
+}
+@media screen and (max-width: 480px) {
+  .container {
+    column-count: 1;
+  }
+}
